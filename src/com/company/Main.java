@@ -48,17 +48,19 @@ class UserInput {
     public String promptString(String message) {
         System.out.println(message);
         String userInput = scanner.nextLine();
-
         String userString = "";
+
         boolean isString = false;
         while (!isString) {
             try {
-                userString = String.format("");
+                double doubleNum = Double.parseDouble(userInput);
+                System.out.println(userInput + " is not a valid string. " + message);
                 isString = true;
+
+
             }
             catch (NumberFormatException e) {
-                System.out.println(userInput + " is not a valid string. " + message);
-                userInput = scanner.nextLine();
+                isString = false;
             }
         }
 
