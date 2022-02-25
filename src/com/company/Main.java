@@ -22,7 +22,9 @@ class UserInput {
             }
         }
 
+        System.out.println(userInt + " is a valid integer");
         return userInt;
+        
     }
 
     public double promptDouble(String message) {
@@ -42,6 +44,7 @@ class UserInput {
             }
         }
 
+        System.out.println(userDouble + " is a valid double");
         return userDouble;
     }
 
@@ -54,16 +57,19 @@ class UserInput {
         while (!isString) {
             try {
                 double doubleNum = Double.parseDouble(userInput);
-                System.out.println(userInput + " is not a valid string. " + message);
-                isString = true;
-
-
+                
+                System.out.println(doubleNum + " is not a valid string. " + message);
+                isString = false;
+                System.out.println("Please enter a string");
+                userInput = scanner.nextLine();
             }
             catch (NumberFormatException e) {
-                isString = false;
+                isString = true;
+                break;
             }
         }
 
+        System.out.println(userInput + " is a valid string");
         return userString;
     }
 
@@ -75,14 +81,11 @@ class UserInput {
 public class Main {
     public static void main(String[] args) {
         UserInput input = new UserInput();
-        int aNumber = input.promptInt("Enter an integer.");
-        System.out.println(aNumber + " is valid integer");
-
-        double bNumber = input.promptDouble("Enter a double.");
-        System.out.println(bNumber + " is a valid double");
-
-        String character = input.promptString("Enter a string.");
-        System.out.println(character + " is a valid string");
+        input.promptInt("Enter an integer.");
+        
+        input.promptDouble("Enter a double.");
+        
+        input.promptString("Enter a string.");
 
     }
 }
